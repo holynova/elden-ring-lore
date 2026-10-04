@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>艾尔登法环：黄金律法前因与群星破晓 | Hyperframe 史诗剧情解析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06090e;
+      --bg-card: rgba(14, 20, 32, 0.88);
+      --border-color: rgba(251, 191, 36, 0.35);
+      --accent: #fbbf24;
+      --accent-sec: #38bdf8;
+      --accent-alert: #f87171;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Noto Serif SC', -apple-system, BlinkMacSystemFont, "PingFang SC", serif;
+      line-height: 1.6;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+    .series-nav-bar {
+      background: rgba(10, 14, 22, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .series-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s;
+    }
+    .series-link:hover, .series-link.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+    }
+    .hero-banner {
+      padding: 50px 20px 24px;
+      text-align: center;
+    }
+    .badge-top {
+      display: inline-block;
+      padding: 5px 18px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      margin-bottom: 16px;
+      font-weight: 800;
+    }
+    .main-title {
+      font-size: clamp(30px, 4.5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      line-height: 1.25;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent) 95%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: clamp(15px, 1.8vw, 19px);
+      color: var(--text-muted);
+      max-width: 840px;
+      margin: 0 auto 28px;
+    }
+    .tag-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .spec-tag {
+      padding: 5px 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+    .spec-tag b { color: var(--accent); }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+    .video-box {
+      background: #000;
+      border: 1.5px solid var(--border-color);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+      margin-bottom: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      padding-top: 56.25%;
+    }
+    .video-wrapper video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .player-quickbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: rgba(15, 20, 30, 0.95);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .current-chapter-display {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+    }
+    .indicator-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.8); opacity: 0.5; }
+    }
+    .current-chapter-name { color: var(--accent); font-weight: 700; }
+    .playback-tools { display: flex; gap: 8px; }
+    .speed-btn {
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #cbd5e1;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .speed-btn.active {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      border-color: var(--accent);
+    }
+
+    /* Interactive Timeline Nav */
+    .timeline-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 45px;
+    }
+    .timeline-nav-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+    .timeline-nav-card:hover, .timeline-nav-card.active {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tn-index {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--accent);
+    }
+    .tn-info { flex: 1; overflow: hidden; }
+    .tn-title {
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #f1f5f9;
+    }
+    .tn-time { font-size: 11px; color: #64748b; }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 26px;
+      font-weight: 900;
+      margin: 40px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    /* Causal Cards List */
+    .causal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 45px;
+    }
+    .causal-scene-card {
+      background: var(--bg-card);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.25s;
+    }
+    .causal-scene-card:hover {
+      border-color: var(--accent);
+    }
+    .csc-header { margin-bottom: 18px; }
+    .csc-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+    .csc-step {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      color: var(--accent);
+    }
+    .csc-time-tag { font-size: 12px; color: #64748b; }
+    .csc-title { font-size: 22px; font-weight: 900; color: #f8fafc; margin-bottom: 8px; }
+    .csc-narration { font-size: 15px; color: var(--text-muted); font-style: italic; line-height: 1.5; }
+    .csc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .causal-box {
+      background: rgba(8, 12, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .c-pill {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .c-title { font-size: 17px; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+    .c-bullets { list-style: none; padding-left: 0; }
+    .c-bullets li {
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 5px;
+      position: relative;
+      padding-left: 14px;
+    }
+    .c-bullets li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* Character Dossier */
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+    .char-card {
+      background: var(--bg-card);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.25s;
+    }
+    .char-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .char-img-wrap {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .char-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .char-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .char-body { padding: 18px 20px; }
+    .char-name { font-size: 20px; font-weight: 900; color: #ffffff; margin-bottom: 6px; }
+    .char-desc { font-size: 14px; color: var(--text-muted); line-height: 1.45; }
+
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: #64748b;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Global Series Bar -->
+  <div class="series-nav-bar">
+    <a href="https://holynova.github.io/elden-ring-lore/" class="series-link active">艾尔登法环</a><a href="https://holynova.github.io/cyberpunk-2077-lore/" class="series-link">赛博朋克2077</a><a href="https://holynova.github.io/rdr2-lore/" class="series-link">荒野大镖客2</a><a href="https://holynova.github.io/gta5-lore/" class="series-link">GTA5</a><a href="https://holynova.github.io/witcher-3-lore/" class="series-link">巫师三</a><a href="https://holynova.github.io/dark-souls-3-lore/" class="series-link">黑暗之魂3</a>
+  </div>
+
+  <!-- Hero Header -->
+  <header class="hero-banner">
+    <div class="badge-top">ELDEN RING / 魂系开放世界神作</div>
+    <h1 class="main-title">艾尔登法环：黄金律法前因与群星破晓</h1>
+    <p class="subtitle">从无上意志降临、黑刀之夜法环破碎，到褪色者弑神开启群星时代</p>
+    <div class="tag-container">
+      <div class="spec-tag">视频规格：<b>1080P 60FPS 超清</b></div>
+      <div class="spec-tag">音频体验：<b>双声道定制氛围 BGM</b></div>
+      <div class="spec-tag">叙事风格：<b>慷慨激昂 / 说人话因果闭环</b></div>
+      <div class="spec-tag">视觉呈现：<b>极简大字 / 严密时间线 / 绝对无进度条</b></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Cinema Video Box -->
+    <div class="video-box">
+      <div class="video-wrapper">
+        <video id="mainVideo" controls poster="assets/images/hero_marika.jpg">
+          <source src="elden-ring_lore.mp4" type="video/mp4">
+          您的浏览器暂不支持 HTML5 视频播放。
+        </video>
+      </div>
+      <div class="player-quickbar">
+        <div class="current-chapter-display">
+          <div class="indicator-dot"></div>
+          <span>当前解析：<b class="current-chapter-name" id="curChapterName">起源与前因 · 黄金律法建立与永生诅咒</b></span>
+        </div>
+        <div class="playback-tools">
+          <button class="speed-btn active" onclick="setSpeed(1.0, this)">1.0x</button>
+          <button class="speed-btn" onclick="setSpeed(1.25, this)">1.25x</button>
+          <button class="speed-btn" onclick="setSpeed(1.5, this)">1.5x</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Nav Bar -->
+    <div class="timeline-nav-grid">
+      
+          <div class="timeline-nav-card" onclick="jumpToChapter(0.0, 1)">
+            <div class="tn-index">01</div>
+            <div class="tn-info">
+              <div class="tn-title">起源与前因 · 黄金律法建立与永生诅咒</div>
+              <div class="tn-time">00:00</div>
+            </div>
+          </div>
+        
+          <div class="timeline-nav-card" onclick="jumpToChapter(33.8, 2)">
+            <div class="tn-index">02</div>
+            <div class="tn-info">
+              <div class="tn-title">阴谋与转折 · 黑刀之夜与法环破碎</div>
+              <div class="tn-time">00:33</div>
+            </div>
+          </div>
+        
+          <div class="timeline-nav-card" onclick="jumpToChapter(69.9, 3)">
+            <div class="tn-index">03</div>
+            <div class="tn-info">
+              <div class="tn-title">半神内战 · 破碎战争与盖利德焦土</div>
+              <div class="tn-time">01:09</div>
+            </div>
+          </div>
+        
+          <div class="timeline-nav-card" onclick="jumpToChapter(108.4, 4)">
+            <div class="tn-index">04</div>
+            <div class="tn-info">
+              <div class="tn-title">保底机制 · 赐福重燃唤醒褪色者</div>
+              <div class="tn-time">01:48</div>
+            </div>
+          </div>
+        
+          <div class="timeline-nav-card" onclick="jumpToChapter(139.4, 5)">
+            <div class="tn-index">05</div>
+            <div class="tn-info">
+              <div class="tn-title">终极决战 · 凡人弑神的巅峰一役</div>
+              <div class="tn-time">02:19</div>
+            </div>
+          </div>
+        
+          <div class="timeline-nav-card" onclick="jumpToChapter(171.8, 6)">
+            <div class="tn-index">06</div>
+            <div class="tn-info">
+              <div class="tn-title">终局抉择 · 告别神明的人间新生</div>
+              <div class="tn-time">02:51</div>
+            </div>
+          </div>
+        
+    </div>
+
+    <!-- Section 1: Causal Logic Full Map -->
+    <h2 class="section-title">六幕剧情前因后果全景因果链</h2>
+    <div class="causal-list">
+      
+          <div class="causal-scene-card" id="scene-card-1">
+            <div class="csc-header">
+              <div class="csc-meta">
+                <span class="csc-step">STAGE 01</span>
+                <span class="csc-time-tag">00:00</span>
+              </div>
+              <h3 class="csc-title">起源与前因 · 黄金律法建立与永生诅咒</h3>
+              <p class="csc-narration">"很多朋友打老头环总觉得谜语人看不懂，其实老头环的主线因果极其清晰明了！一切前因都要归咎于外在神明“无上意志”：它派下艾尔登之兽，扶持玛莉卡成为交界地的神！玛莉卡成神第一件事，就是把死亡卢恩从法环里扣掉彻底封印！从此世人永生不死，黄金律法垄断一切！但这埋下了致命隐患——半神不死打破了生死法则，畸形的神权统治终将崩塌！"</p>
+            </div>
+            <div class="csc-grid">
+              
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(251, 191, 36, 0.16); color: #fbbf24;">【外在神降临】</span>
+                <h4 class="c-title">无上意志统治交界地</h4>
+                <ul class="c-bullets">
+                  <li>派下黄金流星与艾尔登之兽，扶持玛莉卡登神</li><li>以黄金树为核心，统合交界地各大派系</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(56, 189, 248, 0.16); color: #38bdf8;">【剔除死亡】</span>
+                <h4 class="c-title">建立永恒黄金律法</h4>
+                <ul class="c-bullets">
+                  <li>强行扣出并封印【命定之死】，众生永不真正死亡</li><li>灵魂死后归于黄金树，形成绝对垄断闭环</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(248, 113, 113, 0.16); color: #f87171;">【致命祸根】</span>
+                <h4 class="c-title">打破生死自然平衡</h4>
+                <ul class="c-bullets">
+                  <li>半神自恃永生飞扬跋扈，制度僵化无法逆转</li><li>长期的神权高压，引爆了神族内部的强烈反抗</li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+        
+          <div class="causal-scene-card" id="scene-card-2">
+            <div class="csc-header">
+              <div class="csc-meta">
+                <span class="csc-step">STAGE 02</span>
+                <span class="csc-time-tag">00:33</span>
+              </div>
+              <h3 class="csc-title">阴谋与转折 · 黑刀之夜与法环破碎</h3>
+              <p class="csc-narration">"永恒的统治终于引爆了内部分裂！月之公主拉妮受够了当二指提线木偶，暗中盗走死之卢恩，雇佣黑刀刺客在雨夜刺杀了黄金长子葛德文！这是黄金律法下第一位死去的半神！玛莉卡本就对神权垄断极其不满，长子暴毙彻底击穿了她的心理防线，她愤然举起铁锤砸碎了艾尔登法环！而第二任丈夫拉达冈拼命想修补，却无力回天，神明双双被无上意志囚禁在黄金树内！"</p>
+            </div>
+            <div class="csc-grid">
+              
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(56, 189, 248, 0.16); color: #38bdf8;">【密谋反抗】</span>
+                <h4 class="c-title">拉妮窃取死之卢恩</h4>
+                <ul class="c-bullets">
+                  <li>拒绝受制于双指木偶命运，舍弃神人肉身</li><li>打造弑神黑刀，策动震惊交界地的暗杀</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(248, 113, 113, 0.16); color: #f87171;">【黑刀之夜】</span>
+                <h4 class="c-title">黄金长子葛德文陨落</h4>
+                <ul class="c-bullets">
+                  <li>黄金律法【不死神话】瞬间被彻底戳穿</li><li>死诞者瘟疫在交界地疯狂蔓延扩散</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(251, 191, 36, 0.16); color: #fbbf24;">【砸碎法环】</span>
+                <h4 class="c-title">玛莉卡怒碎艾尔登法环</h4>
+                <ul class="c-bullets">
+                  <li>玛莉卡心碎反抗神权，怒砸法环散落人间</li><li>拉达冈修补失败，双双被封印囚禁黄金树内</li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+        
+          <div class="causal-scene-card" id="scene-card-3">
+            <div class="csc-header">
+              <div class="csc-meta">
+                <span class="csc-step">STAGE 03</span>
+                <span class="csc-time-tag">01:09</span>
+              </div>
+              <h3 class="csc-title">半神内战 · 破碎战争与盖利德焦土</h3>
+              <p class="csc-narration">"法环一碎，大卢恩散落各处，半神子嗣们当场炸锅，争先恐后抢夺碎片爆发“破碎战争”！这是交界地最残酷的内战！红鬃战神拉塔恩将军为了护佑城镇，以凡人之躯封印漫天群星；而玛莲妮亚为了寻找孪生哥哥，挥师南下与拉塔恩在盖利德展开旷世决战！玛莲妮亚被逼到绝境引爆猩红腐败之花，拉塔恩神智被噬，整片盖利德沦为地狱焦土！到头来，没有一个半神配得上成王！"</p>
+            </div>
+            <div class="csc-grid">
+              
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(248, 113, 113, 0.16); color: #f87171;">【抢夺卢恩】</span>
+                <h4 class="c-title">半神子嗣全境混战</h4>
+                <ul class="c-bullets">
+                  <li>诸王割据自立为王，神圣王城遭遇残酷围攻</li><li>生灵涂炭无休止内耗，秩序荡然无存</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(251, 191, 36, 0.16); color: #fbbf24;">【巅峰对决】</span>
+                <h4 class="c-title">盖利德战役两败俱伤</h4>
+                <ul class="c-bullets">
+                  <li>最强半神拉塔恩肉身锁星 vs 女武神剑术通神</li><li>女武神引爆猩红腐败，拉塔恩沦为食尸发狂战神</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(56, 189, 248, 0.16); color: #38bdf8;">【集体弃考】</span>
+                <h4 class="c-title">半神全员无法成王</h4>
+                <ul class="c-bullets">
+                  <li>无一胜者能聚齐大卢恩，内战陷入绝对死局</li><li>交界地彻底沦为被神明遗弃的人间烂摊子</li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+        
+          <div class="causal-scene-card" id="scene-card-4">
+            <div class="csc-header">
+              <div class="csc-meta">
+                <span class="csc-step">STAGE 04</span>
+                <span class="csc-time-tag">01:48</span>
+              </div>
+              <h3 class="csc-title">保底机制 · 赐福重燃唤醒褪色者</h3>
+              <p class="csc-narration">"半神全部烂泥扶不上墙，无上意志的机制只能触发终极保底：唤醒被驱逐出境数千年的“褪色者”！当年被夺走赐福流放海外的战士们，双眼再次被金色微光点燃！无上意志的指令粗暴直接：褪色者们，给我杀回交界地，把那帮不中用的半神全宰了，收齐大卢恩重修法环！我们操控的主角，就是这个体制最强悍的催债打手！"</p>
+            </div>
+            <div class="csc-grid">
+              
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(251, 191, 36, 0.16); color: #fbbf24;">【终极应急】</span>
+                <h4 class="c-title">体制启动保底机制</h4>
+                <ul class="c-bullets">
+                  <li>半神集体弃考无神成王，无上意志重启备选名单</li><li>向早已化作枯骨的褪色者重新降下微弱赐福</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(248, 113, 113, 0.16); color: #f87171;">【降维清算】</span>
+                <h4 class="c-title">跨越雾海猎杀半神</h4>
+                <ul class="c-bullets">
+                  <li>踏平史东薇尔、利耶尼亚与王城罗德尔</li><li>以凡人之躯斩杀葛瑞克、满月女王与拉塔恩收缴卢恩</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(56, 189, 248, 0.16); color: #38bdf8;">【逆神烧树】</span>
+                <h4 class="c-title">火种点燃拒绝之刺</h4>
+                <ul class="c-bullets">
+                  <li>王城树门被无上意志封死，唯有颠覆规则</li><li>前往雪原巨人之顶，点燃黄金树强行破门！</li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+        
+          <div class="causal-scene-card" id="scene-card-5">
+            <div class="csc-header">
+              <div class="csc-meta">
+                <span class="csc-step">STAGE 05</span>
+                <span class="csc-time-tag">02:19</span>
+              </div>
+              <h3 class="csc-title">终极决战 · 凡人弑神的巅峰一役</h3>
+              <p class="csc-narration">"灰烬覆盖的王城罗德尔，最终试炼拉开帷幕！击败战王葛孚雷、踏破黄金树大门后，我们面对的是神性化身拉达冈！然而拉达冈倒下后，真正的幕后黑手降临——艾尔登之兽从黑夜星云中破水而出！它是神性律法的具象化，也是无上意志留在人间的终极看门狗！挥动武器击碎艾尔登之兽，就是凡人彻底跨越神明枷锁、掌握自身命运的壮举！"</p>
+            </div>
+            <div class="csc-grid">
+              
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(251, 191, 36, 0.16); color: #fbbf24;">【灰烬王座】</span>
+                <h4 class="c-title">踏平旧时代一切守护者</h4>
+                <ul class="c-bullets">
+                  <li>斩杀初代艾尔登之王葛孚雷，踏碎顽固防线</li><li>正面迎战黄金律法虔诚信徒——红发拉达冈</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(56, 189, 248, 0.16); color: #38bdf8;">【神性降临】</span>
+                <h4 class="c-title">艾尔登之兽星云显现</h4>
+                <ul class="c-bullets">
+                  <li>律法意志凝聚化为巨兽，漫天神圣星辰光剑</li><li>代表外在神明对交界地凡人最后的绝对压制</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(248, 113, 113, 0.16); color: #f87171;">【凡人弑神】</span>
+                <h4 class="c-title">彻底击碎神性枷锁</h4>
+                <ul class="c-bullets">
+                  <li>以凡人之血刃斩落星云巨兽，终结千万年神权</li><li>交界地天地权柄彻底归于胜者手中！</li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+        
+          <div class="causal-scene-card" id="scene-card-6">
+            <div class="csc-header">
+              <div class="csc-meta">
+                <span class="csc-step">STAGE 06</span>
+                <span class="csc-time-tag">02:51</span>
+              </div>
+              <h3 class="csc-title">终局抉择 · 告别神明的人间新生</h3>
+              <p class="csc-narration">"弑神之后，王座归宿由你抉择！继续当艾尔登之王修补破损的黄金律法？那不过是让病态的体制苟延残喘！真正的史诗解脱，是回应月之公主拉妮的召唤，开启“群星时代”！褪色者与拉妮携手，带走所有的神明律法与掌控，遁入千年的深邃星空！把交界地的未来完完全全还给凡人！在微凉的月光照耀下，世间再无神明束缚，唯有属于生命的自由破晓！"</p>
+            </div>
+            <div class="csc-grid">
+              
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(248, 113, 113, 0.16); color: #f87171;">【拒绝缝补】</span>
+                <h4 class="c-title">抛弃苟延残喘的旧律法</h4>
+                <ul class="c-bullets">
+                  <li>黄金律法早已千疮百孔，打补丁只会重蹈覆辙</li><li>彻底否定外在神明对人类命运的独裁操控</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(56, 189, 248, 0.16); color: #38bdf8;">【群星时代】</span>
+                <h4 class="c-title">立下千年月之誓约</h4>
+                <ul class="c-bullets">
+                  <li>与拉妮携手登神，将律法移往不可触及的浩瀚星空</li><li>不让凡间感受神威，亦不让神明干涉凡人生活</li>
+                </ul>
+              </div>
+            
+              <div class="causal-box">
+                <span class="c-pill" style="background: rgba(251, 191, 36, 0.16); color: #fbbf24;">【破晓新生】</span>
+                <h4 class="c-title">属于人类的崭新纪元</h4>
+                <ul class="c-bullets">
+                  <li>漫长黑夜终结，交界地迎来第一缕自由晨光</li><li>神权时代落幕，属于凡人意志的辉煌开端！</li>
+                </ul>
+              </div>
+            
+            </div>
+          </div>
+        
+    </div>
+
+    <!-- Section 2: Character Dossier -->
+    <h2 class="section-title">关键人物与核心场景档案</h2>
+    <div class="char-grid">
+      
+          <div class="char-card">
+            <div class="char-img-wrap">
+              <img src="assets/images/scene01_marika.jpg" alt="永恒女王 玛莉卡" class="char-img" />
+              <div class="char-badge" style="border-color: #fbbf24; color: #fbbf24;">神性主宰</div>
+            </div>
+            <div class="char-body">
+              <h4 class="char-name">永恒女王 玛莉卡</h4>
+              <p class="char-desc">无上意志选中的神，亲手开创黄金律法，亦亲手砸碎法环。</p>
+            </div>
+          </div>
+        
+          <div class="char-card">
+            <div class="char-img-wrap">
+              <img src="assets/images/scene02_ranni.jpg" alt="月之公主 拉妮" class="char-img" />
+              <div class="char-badge" style="border-color: #fbbf24; color: #fbbf24;">暗月掌控者</div>
+            </div>
+            <div class="char-body">
+              <h4 class="char-name">月之公主 拉妮</h4>
+              <p class="char-desc">拒绝受制于双指提线木偶，盗取死亡之刃掀起惊天反抗。</p>
+            </div>
+          </div>
+        
+          <div class="char-card">
+            <div class="char-img-wrap">
+              <img src="assets/images/scene03_radahn.jpg" alt="碎星将军 拉塔恩" class="char-img" />
+              <div class="char-badge" style="border-color: #fbbf24; color: #fbbf24;">红鬃战神</div>
+            </div>
+            <div class="char-body">
+              <h4 class="char-name">碎星将军 拉塔恩</h4>
+              <p class="char-desc">以肉身重力锁死漫天群星，盖利德之役与女武神两败俱伤。</p>
+            </div>
+          </div>
+        
+          <div class="char-card">
+            <div class="char-img-wrap">
+              <img src="assets/images/scene01_marika.jpg" alt="无名褪色者" class="char-img" />
+              <div class="char-badge" style="border-color: #fbbf24; color: #fbbf24;">体制催债人</div>
+            </div>
+            <div class="char-body">
+              <h4 class="char-name">无名褪色者</h4>
+              <p class="char-desc">跨越雾海归来，以凡人之躯打扫半神烂摊子的终极执行者。</p>
+            </div>
+          </div>
+        
+          <div class="char-card">
+            <div class="char-img-wrap">
+              <img src="assets/images/scene05_beast.jpg" alt="艾尔登之兽" class="char-img" />
+              <div class="char-badge" style="border-color: #fbbf24; color: #fbbf24;">神性看门狗</div>
+            </div>
+            <div class="char-body">
+              <h4 class="char-name">艾尔登之兽</h4>
+              <p class="char-desc">无上意志在交界地的律法具象化身，星云水龙般的神性巨兽。</p>
+            </div>
+          </div>
+        
+          <div class="char-card">
+            <div class="char-img-wrap">
+              <img src="assets/images/scene02_ranni.jpg" alt="暗月之神 拉妮" class="char-img" />
+              <div class="char-badge" style="border-color: #fbbf24; color: #fbbf24;">新纪元开创者</div>
+            </div>
+            <div class="char-body">
+              <h4 class="char-name">暗月之神 拉妮</h4>
+              <p class="char-desc">携手褪色者带走律法遁入星空，将大地与自由彻底归还人类。</p>
+            </div>
+          </div>
+        
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Hyperframe Video & Visual Knowledge Lab · 基于因果逻辑与高阶视觉合成构建</p>
+  </footer>
+
+  <script>
+    const video = document.getElementById('mainVideo');
+    const timestamps = [0.0, 33.8, 69.94999999999999, 108.41, 139.43, 171.81];
+    const sceneTitles = ["\u8d77\u6e90\u4e0e\u524d\u56e0 \u00b7 \u9ec4\u91d1\u5f8b\u6cd5\u5efa\u7acb\u4e0e\u6c38\u751f\u8bc5\u5492", "\u9634\u8c0b\u4e0e\u8f6c\u6298 \u00b7 \u9ed1\u5200\u4e4b\u591c\u4e0e\u6cd5\u73af\u7834\u788e", "\u534a\u795e\u5185\u6218 \u00b7 \u7834\u788e\u6218\u4e89\u4e0e\u76d6\u5229\u5fb7\u7126\u571f", "\u4fdd\u5e95\u673a\u5236 \u00b7 \u8d50\u798f\u91cd\u71c3\u5524\u9192\u892a\u8272\u8005", "\u7ec8\u6781\u51b3\u6218 \u00b7 \u51e1\u4eba\u5f11\u795e\u7684\u5dc5\u5cf0\u4e00\u5f79", "\u7ec8\u5c40\u6289\u62e9 \u00b7 \u544a\u522b\u795e\u660e\u7684\u4eba\u95f4\u65b0\u751f"];
+
+    function jumpToChapter(seconds, idx) {
+      video.currentTime = seconds;
+      video.play();
+      updateChapterUI(idx - 1);
+    }
+
+    function setSpeed(speed, btn) {
+      video.playbackRate = speed;
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function updateChapterUI(idx) {
+      document.getElementById('curChapterName').innerText = sceneTitles[idx];
+      document.querySelectorAll('.timeline-nav-card').forEach((c, i) => {
+        if (i === idx) c.classList.add('active');
+        else c.classList.remove('active');
+      });
+    }
+
+    video.addEventListener('timeupdate', () => {
+      const t = video.currentTime;
+      let activeIdx = 0;
+      for (let i = 0; i < timestamps.length; i++) {
+        if (t >= timestamps[i]) activeIdx = i;
+      }
+      updateChapterUI(activeIdx);
+    });
+  </script>
+</body>
+</html>
