@@ -1,76 +1,47 @@
-# 艾尔登法环：黄金律法前因与群星破晓
+# 艾尔登法环 · 黄金律法与群星破晓
 
-> 6幕环环相扣的前因后果史诗解析：从无上意志降临、命定之死封印，到黑刀之夜法环破碎、半神破碎战争，再到褪色者弑神开启群星时代！
+用六幕中文视频梳理黄金律法、黑刀之夜、破碎战争与褪色者的终局。
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Showcase-brightgreen?style=for-the-badge&logo=github)](https://holynova.github.io/elden-ring-lore/)
-[![Hyperframes](https://img.shields.io/badge/Rendered%20with-Hyperframes%203.0-orange?style=for-the-badge)](https://hyperframes.heygen.com)
-[![Voice](https://img.shields.io/badge/Voice-YunjianNeural-blue?style=for-the-badge)](https://azure.microsoft.com/en-us/products/cognitive-services/text-to-speech/)
+A six-chapter Chinese video tracing the Golden Order, the Shattering and the Tarnished’s ending.
 
----
+[在线体验](https://elden-ring-lore.xiaosang.cc/) · [源码](https://github.com/holynova/elden-ring-lore)
 
-## 🌐 在线体验与直达链接
-👉 **点击直接访问 GitHub Pages 视频与互动播放器**:  
-**[https://holynova.github.io/elden-ring-lore/](https://holynova.github.io/elden-ring-lore/)**
+![艾尔登法环 · 黄金律法与群星破晓：真实页面截图](./assets/readme/screenshot.png)
 
----
+## 可以做什么
 
-## 🎨 视觉风格与工程规格
-- **专属配色主题**: `黄金律法金光 (#fbbf24) + 暗月群星银蓝 (#38bdf8)`
-- **视频规格**: 1920x1080 30FPS，基于 Hyperframes 3.0 ANGLE Metal 硬件加速录制
-- **配音音调**: `edge-tts --voice zh-CN-YunjianNeural --rate=+3%`（慷慨激昂纪录片大片气势）
-- **氛围原画**: 纯正 4K/1080P 官方与 Nano 级高精概念美术
-- **交互特色**: 
-  - 严密 6 幕因果时间线（起因 ➔ 转折 ➔ 危机 ➔ 保底/抉择 ➔ 决战 ➔ 破晓/终局）
-  - 醒目大字、因果分类框（`【起因】`、`【冲突】`、`【后果】`）、简练 Bullets 要点
-  - **画面底部绝对无进度条**，极简高级视觉流
+- 按章节跳转，结合时间线阅读剧情因果。
+- 仓库保留成片、旁白与分幕合成源码。
 
----
+## 观看与工程
 
-## 📜 六幕剧情前因后果全景
+打开在线页面播放，或选择章节定位观看。包含主线与结局剧透。
 
-### Stage 01: 起源与前因 · 黄金律法建立与永生诅咒
-- **时间线节点**: `TIMELINE 01 / ORIGIN OF THE GOLDEN ORDER`
-- **出场焦点**: **永恒女王 玛莉卡** (神性主宰)
-- **核心叙事**: 很多朋友打老头环总觉得谜语人看不懂，其实老头环的主线因果极其清晰明了！一切前因都要归咎于外在神明“无上意志”：它派下艾尔登之兽，扶持玛莉卡成为交界地的神！玛莉卡成神第一件事，就是把死亡卢恩从法环里扣掉彻底封印！从此世人永生不死，黄金律法垄断一切！但这埋下了致命隐患——半神不死打破了生死法则，畸形的神权统治终将崩塌！
+[打开成片](https://elden-ring-lore.xiaosang.cc/elden_ring_lore.mp4) · [仓库中的视频](./elden_ring_lore.mp4)
 
-### Stage 02: 阴谋与转折 · 黑刀之夜与法环破碎
-- **时间线节点**: `TIMELINE 02 / NIGHT OF THE BLACK KNIVES`
-- **出场焦点**: **月之公主 拉妮** (暗月掌控者)
-- **核心叙事**: 永恒的统治终于引爆了内部分裂！月之公主拉妮受够了当二指提线木偶，暗中盗走死之卢恩，雇佣黑刀刺客在雨夜刺杀了黄金长子葛德文！这是黄金律法下第一位死去的半神！玛莉卡本就对神权垄断极其不满，长子暴毙彻底击穿了她的心理防线，她愤然举起铁锤砸碎了艾尔登法环！而第二任丈夫拉达冈拼命想修补，却无力回天，神明双双被无上意志囚禁在黄金树内！
+实测成片：1920 × 1080，30 fps，H.264 + AAC；时长 3:27，文件约 11.0 MiB。
 
-### Stage 03: 半神内战 · 破碎战争与盖利德焦土
-- **时间线节点**: `TIMELINE 03 / THE SHATTERING WAR`
-- **出场焦点**: **碎星将军 拉塔恩** (红鬃战神)
-- **核心叙事**: 法环一碎，大卢恩散落各处，半神子嗣们当场炸锅，争先恐后抢夺碎片爆发“破碎战争”！这是交界地最残酷的内战！红鬃战神拉塔恩将军为了护佑城镇，以凡人之躯封印漫天群星；而玛莲妮亚为了寻找孪生哥哥，挥师南下与拉塔恩在盖利德展开旷世决战！玛莲妮亚被逼到绝境引爆猩红腐败之花，拉塔恩神智被噬，整片盖利德沦为地狱焦土！到头来，没有一个半神配得上成王！
+`index.html` 是公开播放器；`composition.html` 与 `compositions/` 保留视频合成源码。旁白和配乐在 `assets/`。
 
-### Stage 04: 保底机制 · 赐福重燃唤醒褪色者
-- **时间线节点**: `TIMELINE 04 / TARNISHED GUIDANCE`
-- **出场焦点**: **无名褪色者** (体制催债人)
-- **核心叙事**: 半神全部烂泥扶不上墙，无上意志的机制只能触发终极保底：唤醒被驱逐出境数千年的“褪色者”！当年被夺走赐福流放海外的战士们，双眼再次被金色微光点燃！无上意志的指令粗暴直接：褪色者们，给我杀回交界地，把那帮不中用的半神全宰了，收齐大卢恩重修法环！我们操控的主角，就是这个体制最强悍的催债打手！
+## 本地预览
 
-### Stage 05: 终极决战 · 凡人弑神的巅峰一役
-- **时间线节点**: `TIMELINE 05 / THE ELDEN BEAST`
-- **出场焦点**: **艾尔登之兽** (神性看门狗)
-- **核心叙事**: 灰烬覆盖的王城罗德尔，最终试炼拉开帷幕！击败战王葛孚雷、踏破黄金树大门后，我们面对的是神性化身拉达冈！然而拉达冈倒下后，真正的幕后黑手降临——艾尔登之兽从黑夜星云中破水而出！它是神性律法的具象化，也是无上意志留在人间的终极看门狗！挥动武器击碎艾尔登之兽，就是凡人彻底跨越神明枷锁、掌握自身命运的壮举！
-
-### Stage 06: 终局抉择 · 告别神明的人间新生
-- **时间线节点**: `TIMELINE 06 / AGE OF THE STARS`
-- **出场焦点**: **暗月之神 拉妮** (新纪元开创者)
-- **核心叙事**: 弑神之后，王座归宿由你抉择！继续当艾尔登之王修补破损的黄金律法？那不过是让病态的体制苟延残喘！真正的史诗解脱，是回应月之公主拉妮的召唤，开启“群星时代”！褪色者与拉妮携手，带走所有的神明律法与掌控，遁入千年的深邃星空！把交界地的未来完完全全还给凡人！在微凉的月光照耀下，世间再无神明束缚，唯有属于生命的自由破晓！
-
-
-
----
-
-## 🚀 本地运行与开发
 ```bash
-# 本地预览播放器
 python3 -m http.server 8080
-# 浏览器打开 http://localhost:8080
-
-# 重新渲染视频
-npx hyperframes render -o elden-ring_lore.mp4 --workers 1
 ```
 
----
-*Created with Hyperframes Video Engine & Antigravity Agentic Studio.*
+打开 http://localhost:8080/。播放器直接使用仓库成片，无需先渲染。
+
+重新渲染需安装工程依赖和可用的 Chrome；在 HyperFrames 中使用 `composition.html` 合成入口，避免把播放器页面当作视频时间线。
+
+影视化剧情是作者的剪辑与解释，游戏角色、官方素材及相关商标归各自权利人；这是非官方项目。
+
+<img src="./assets/readme/qr.png" width="144" alt="扫码打开https://elden-ring-lore.xiaosang.cc/">
+
+## 发布
+
+```bash
+npx --yes wrangler@4.128.0 deploy --dry-run --config wrangler.jsonc
+npx --yes wrangler@4.128.0 deploy --config wrangler.jsonc
+```
+
+从 `main` 同一提交在本地手动发布到Cloudflare Workers。正式地址：[https://elden-ring-lore.xiaosang.cc/](https://elden-ring-lore.xiaosang.cc/)。 `.assetsignore` 限定公开播放器/站点资源，排除合成工程、开发文件与未供页面使用的大体积音频/字体。
